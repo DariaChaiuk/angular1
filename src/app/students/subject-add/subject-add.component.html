@@ -1,0 +1,6 @@
+<div class="w-50">
+    <div [formGroup]="form" class="d-flex flex-column">
+        <input type="text" class="my-1" placeholder="Subject name" formControlName="name">
+    </div>
+    <button class="btn btn-primary w-100" (click)="createSubject()">{{action}}</button>
+</div>

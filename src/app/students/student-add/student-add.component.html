@@ -1,0 +1,7 @@
+<div class="w-50">
+    <div [formGroup]="form" class="d-flex flex-column">
+        <input type="text" placeholder="Name" formControlName="name">
+        <input type="text" class="my-1" placeholder="Surname" formControlName="surname">
+    </div>
+    <button class="btn btn-primary w-100" (click)="createStudent()">{{action}}</button>
+</div>

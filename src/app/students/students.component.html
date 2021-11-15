@@ -1,0 +1,46 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Surname</th>
+        <th scope="col">Name</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let student of students">
+        <th scope="row">{{student.id}}</th>
+        <td>{{student.surname}}</td>
+        <td>{{student.name}}</td>
+        <td>
+            <button type="button" class="btn btn-primary" (click)="addSubject(student)">Add subject</button>
+            <button type="button" class="btn btn-primary ms-1" (click)="showSubjects(student)">Show subjects</button>
+            <button type="button" class="btn btn-primary ms-1" (click)="editStudent(student)">Edit student</button>
+            <button type="button" class="btn btn-primary ms-1" (click)="deleteStudent(student)">Delete student</button>
+        </td>
+      </tr>
+    </tbody>
+</table>
+<button class="btn btn-primary mb-1" (click)="addStudent()">Add new student</button>
+<app-student-add *ngIf="isVisibleStudent" (onAdd)=createStudent($event) [action]='action' [student]='selectedStudent'></app-student-add>
+<app-subject-add *ngIf="isVisibleSubject" (onAdd) = onCreateSubject($event) (onEdit) = onEditSubject($event) [action]= 'subjectAction' [subject]='selectedSubject'></app-subject-add>
+<ul class="list-group" *ngIf="isVisibleSubjectsList">
+    <li *ngFor="let subject of selectedStudent.subjects" [ngClass]="{'active': selectedSubject?.id === subject.id}" class="list-group-item mt-1" (click)="selectSubject(subject)" aria-current="true">
+       <div class="d-flex justify-content-between">
+            <div>{{subject.name}}</div>
+            <div *ngIf="subject.id === selectedSubject?.id">
+              <button type="button" class="btn btn-secondary" (click)="editSubject(subject)">Edit subject</button>
+              <button type="button" class="btn btn-secondary ms-1" (click)="deleteSubject(subject)">Delete subject</button>
+            </div>
+        </div>
+        <div *ngIf="selectedSubject?.id === subject.id">
+            <ul class="list-group">
+                <li class="list-group-item mt-1 d-flex justify-content-between" *ngFor="let mark of selectedSubject?.marks; let i = index" [ngClass]="{'active': selectedMark?.index === i}" (click)="selectMark(mark, i)">
+                  <div>{{mark}}</div>
+                  <button type="button" class="btn btn-primary" (click)="deleteMark(i)">Delete</button>
+                </li>
+                <app-mark-add (onAdd)="createMark($event)" (onEdit)="editMark($event)" [mark]='selectedMark'></app-mark-add>
+            </ul>
+        </div>
+    </li>
+</ul>

@@ -1,0 +1,7 @@
+<div class="w-50 my-1">
+    <div [formGroup]="form" class="d-flex flex-column">
+        <input type="number" formControlName="mark">
+    </div>
+    <button class="btn btn-secondary w-100 my-1" (click)="createMark()">Add</button>
+    <button class="btn btn-secondary w-100 my-1" (click)="editMark()">Edit</button>
+</div>
