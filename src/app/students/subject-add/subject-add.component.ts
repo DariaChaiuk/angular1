@@ -7,7 +7,7 @@ import { Subject } from 'src/app/models/subject.interface';
   templateUrl: './subject-add.component.html',
   styleUrls: ['./subject-add.component.css']
 })
-export class SubjectAddComponent implements OnInit, OnChanges {
+export class SubjectAddComponent implements OnChanges {
 
   constructor() { }
 
@@ -19,10 +19,6 @@ export class SubjectAddComponent implements OnInit, OnChanges {
   @Output() onEdit = new EventEmitter<Subject>();
   @Input() subject : Subject;
   @Input() action : string = '';
-
-  ngOnInit(): void {
-    //this.action = "Add";
-  }
 
   createSubject():void{
   console.log(this.action)
